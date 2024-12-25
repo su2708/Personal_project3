@@ -129,6 +129,3 @@ erDiagram
 ```
 
 ---
-account
-users
-develop
