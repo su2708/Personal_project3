@@ -1,4 +1,3 @@
-"""
 from django.shortcuts import render, redirect
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth import login as auth_login
@@ -30,7 +29,7 @@ def login(request):
 def logout(request):
     if request.user.is_authenticated:  # user가 로그인 된 상태일 때 실행 
         auth_logout(request)  # 실제 로그아웃 처리를 진행하는 부분 
-    return redirect("articles:index")
+    return redirect("products:index")
 
 @require_http_methods(["GET", "POST"])
 def signup(request):
@@ -39,7 +38,7 @@ def signup(request):
         if form.is_valid():
             user = form.save()  # 새로운 유저 회원가입 정보 저장 
             auth_login(request, user)  # 회원가입과 동시에 새 회원 정보로 로그인 
-            return redirect("articles:index")
+            return redirect("products:index")
     else:
         form = CustomUserCreationForm()
     context = {"form": form}
@@ -50,7 +49,7 @@ def delete(request):
     if request.user.is_authenticated:
         request.user.delete()  # 회원 탈퇴 
         auth_logout(request)  # 세션 지우기 
-    return redirect("articles:index")
+    return redirect("products:index")
 
 @require_http_methods(["GET", "POST"])
 def update(request):
@@ -58,7 +57,7 @@ def update(request):
         form = CustomUserChangeForm(request.POST, instance=request.user)
         if form.is_valid():
             form.save()
-            return redirect("articles:index")
+            return redirect("products:index")
     else:
         form = CustomUserChangeForm(instance=request.user)
     context = {"form": form}
@@ -72,29 +71,8 @@ def change_password(request):
         if form.is_valid():
             form.save()
             update_session_auth_hash(request, form.user)
-            return redirect("articles:index")
+            return redirect("products:index")
     else:
         form = PasswordChangeForm(request.user)
     context = {"form": form}
     return render(request, "accounts/change_password.html", context)
-"""
-
-from django.shortcuts import render
-
-def login(request):
-    pass
-
-def logout(request):
-    pass
-
-def signup(request):
-    pass
-
-def delete(request):
-    pass
-
-def update(request):
-    pass
-
-def change_password(request):
-    pass
