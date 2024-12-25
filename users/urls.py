@@ -4,5 +4,5 @@ from . import views
 app_name = "users"  # namespace 추가
 
 urlpatterns = [
-    
+    path("", views.users, name="users"),
 ]
