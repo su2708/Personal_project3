@@ -10,22 +10,22 @@
         <!-- else products: login -->
     {% endif %}
     
-    <!--{% for product in products %}
-        # 주석: article_detail에 필요한 인자인 product.pk를 같이 넘겨줌
+    {% for product in products %}
+        <!-- article_detail에 필요한 인자인 product.pk를 같이 넘겨줌 -->
         <a href="{% url 'products:product_detail' product.pk %}">
             <p>[ {{ product.pk }} ] {{ product.title }} - {{ product.author }}</p>
         </a>
         <form action="{% url 'products:like' product.pk %}" method="POST">
             {% csrf_token %}
-            <button class="btn btn-link text-danger">
+            <button class="btn btn-link">
                 {% if user in product.like_users.all %}
-                    <i class="fa-solid fa-heart"></i>
+                    <i class="fa-solid fa-thumbs-up"></i>
                 {% else %}
-                    <i class="fa-regular fa-heart"></i>
+                    <i class="fa-regular fa-thumbs-up"></i>
                 {% endif %}
             </button>
         </form>
         <br/>
-    {% endfor %}-->
+    {% endfor %}
     <a href="{% url 'products:index' %}"><button>Index로 돌아가기</button></a>
 {% endblock content %}
