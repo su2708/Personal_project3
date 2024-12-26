@@ -2,7 +2,7 @@ from django.db import models
 from django.conf import settings
 
 def product_image_path(instance, filename):
-    return f'media/images/{filename}'
+    return f'images/{filename}'
 
 # Create your models here.
 class Product(models.Model):
