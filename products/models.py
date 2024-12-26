@@ -1,6 +1,9 @@
 from django.db import models
 from django.conf import settings
 
+def product_image_path(instance, filename):
+    return f'images/{filename}'
+
 # Create your models here.
 class Product(models.Model):
     name = models.CharField(max_length=120)
@@ -8,8 +11,9 @@ class Product(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     image = models.ImageField(
-        upload_to="images/",
+        upload_to=product_image_path,
         blank=True,
+        null=True,
     )
     
     author = models.ForeignKey(
